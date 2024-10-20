@@ -1,0 +1,37 @@
+/* HinhAnh.css */
+.slideshow-container {
+  position: relative;
+  width: 100%;
+  height: 90%; /* Chiều cao toàn bộ trang */
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  object-fit: cover; /* Đảm bảo hình ảnh phủ kín */
+}
+
+.slide.active {
+  opacity: 1; /* Hiển thị ảnh hiện tại */
+}
+
+/* CSS cho form */
+.form-container-signUp {
+  position: absolute;
+  top: 50%; /* Đặt form ở giữa chiều cao */
+  right: 20px; /* Đặt cách bên phải một khoảng */
+  transform: translateY(-50%); /* Đưa form lên giữa */
+  z-index: 10; /* Đảm bảo form nằm trên hình ảnh */
+}
+.form-container-search {
+  position: absolute;
+  top: 50%; /* Đặt form ở giữa chiều cao */
+  left: 20px; /* Đặt cách bên phải một khoảng */
+  transform: translateY(-50%); /* Đưa form lên giữa */
+  z-index: 10; /* Đảm bảo form nằm trên hình ảnh */
+}

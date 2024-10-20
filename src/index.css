@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+    padding-left: 9px;
+    padding-top: 10px;
+    padding-right: 10px;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0; /* Đặt về 0 để footer nằm ở dưới cùng */
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+/* index.css */
+.main-content {
+  padding-top: 65px; /* Chiều cao của header */
+  padding-bottom: 40px; /* Chiều cao của footer */
+  padding-right: 10px;
+  position: relative; /* Để giữ cho các phần tử con được định vị đúng */
+}

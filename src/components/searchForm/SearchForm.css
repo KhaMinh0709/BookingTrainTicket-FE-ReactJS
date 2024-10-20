@@ -1,0 +1,80 @@
+.search-form {
+    background-color: bg-gray-300; /* Màu nền */
+    padding: 40px; /* Tăng khoảng cách bên trong */
+    border-radius: 20px; /* Bo góc */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Đổ bóng */
+    max-width: 600px; /* Tăng chiều rộng */
+    margin: auto; /* Căn giữa form */
+}
+
+.form-title {
+    text-align: center;
+    color: rgb(15, 1, 1);
+    margin-bottom: 30px;
+    font-size: 24px; /* Tăng kích thước chữ */
+}
+
+.trip-type {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px; /* Tăng khoảng cách */
+}
+
+.trip-button {
+    flex: 1;
+    padding: 15px;
+    margin: 0 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.trip-button.active {
+    background-color: #0056b3;
+}
+
+.trip-button:hover {
+    background-color: #0056b3;
+}
+
+.location-selection, .date-selection {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Chia đều 2 cột */
+    gap: 20px; /* Khoảng cách giữa các ô */
+    margin-bottom: 30px;
+}
+
+label {
+    color: rgb(12, 1, 1);
+    font-size: 20px;
+    
+}
+
+select, input[type="date"] {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.search-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px; /* Tăng kích thước chữ */
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: #218838;
+}
