@@ -2,7 +2,7 @@
 .slideshow-container {
   position: relative;
   width: 100%;
-  height: 90%; /* Chiều cao toàn bộ trang */
+  height: 95%; /* Chiều cao toàn bộ trang */
   overflow: hidden;
   border-radius: 10px;
 }
