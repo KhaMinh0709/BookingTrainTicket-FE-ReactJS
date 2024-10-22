@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const REST_API_BASE_URL = "http://localhost:8080/api/schedule";
+const REST_API_BASE__SCHE_URL = "http://localhost:8080/api/schedule";
 
 export const ListTrainInSchedule = async ({ departureStation, arrivalStation, departureTime }) => {
     try {
-        const response = await axios.get(`${REST_API_BASE_URL}/search`, {
+        const response = await axios.get(`${REST_API_BASE__SCHE_URL}/search`, {
             params: {
                 departureStation,
                 arrivalStation,

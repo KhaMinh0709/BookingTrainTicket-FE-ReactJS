@@ -50,7 +50,7 @@ export const SearchForm = ({ onSearch, initialValues }) => {
         });
 
         onSearch(searchResult);
-
+        
         // Chuyển trang với query params
         const queryParams = new URLSearchParams({
             departure,
