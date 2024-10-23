@@ -1,16 +1,13 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { ListTrainInSchedule } from "/src/service/TrainService.js"; 
 import './SearchForm.css';
 
 export const SearchForm = ({ onSearch, initialValues }) => {
-    const navigate = useNavigate(); 
-    const [tripType, setTripType] = useState(initialValues?.tripType || 'oneWay');
     const [departure, setDeparture] = useState(initialValues?.departure || '');
     const [arrival, setArrival] = useState(initialValues?.arrival || '');
     const [departureDate, setDepartureDate] = useState(initialValues?.departureDate || '');
     const [returnDate, setReturnDate] = useState(initialValues?.returnDate || '');
+    const [tripType, setTripType] = useState(initialValues?.tripType || 'oneWay');
 
     const provinces = [
         "Hồ Chí Minh", "An Giang", "Bà Rịa - Vũng Tàu", "Bắc Giang", "Bắc Kạn", "Bạc Liêu",
@@ -25,54 +22,29 @@ export const SearchForm = ({ onSearch, initialValues }) => {
     ];
 
     const handleSubmit = (e) => {
-        e.preventDefault(); // Ngăn chặn việc làm mới trang
-        // Gọi hàm onSearch và truyền dữ liệu
-        handleSearch(); // Gọi hàm handleSearch khi form được gửi
-    };
-
-    const handleSearch = async () => {
-        // Kiểm tra dữ liệu đầu vào
-        if (!departure || !arrival || !departureDate) {
-            alert('Vui lòng điền đầy đủ thông tin!');
-            return;
-        }
-
-        if (tripType === 'roundTrip' && returnDate && new Date(returnDate) < new Date(departureDate)) {
-            alert('Ngày về phải sau ngày đi.');
-            return;
-        }
-
-        // Gọi dịch vụ tìm kiếm
-        const searchResult = await ListTrainInSchedule({
-            departureStation: departure,
-            arrivalStation: arrival,
-            departureTime: departureDate,
-        });
-
-        onSearch(searchResult);
-        
-        // Chuyển trang với query params
-        const queryParams = new URLSearchParams({
+        e.preventDefault();
+        onSearch({
             departure,
             arrival,
             departureDate,
-            ...(tripType === 'roundTrip' && { returnDate })
-        }).toString();
-
-        navigate(`/DatVe?${queryParams}`); // Truyền query params
+            returnDate,
+            tripType,
+        });
     };
 
     return (
-        <div className="search-form" onSubmit={handleSubmit}>
+        <form className="search-form" onSubmit={handleSubmit}>
             <h2 className="form-title">Tìm chuyến</h2>
             <div className="trip-type">
                 <button
+                    type="button"
                     className={`trip-button ${tripType === 'oneWay' ? 'active' : ''}`}
                     onClick={() => setTripType('oneWay')}
                 >
                     Một chiều
                 </button>
                 <button
+                    type="button"
                     className={`trip-button ${tripType === 'roundTrip' ? 'active' : ''}`}
                     onClick={() => setTripType('roundTrip')}
                 >
@@ -106,25 +78,17 @@ export const SearchForm = ({ onSearch, initialValues }) => {
             <div className="date-selection">
                 <label>
                     Ngày đi
-                    <input
-                        type="date"
-                        value={departureDate}
-                        onChange={(e) => setDepartureDate(e.target.value)}
-                    />
+                    <input type="date" value={departureDate} onChange={(e) => setDepartureDate(e.target.value)} />
                 </label>
                 {tripType === 'roundTrip' && (
                     <label>
                         Ngày về (Khứ hồi)
-                        <input
-                            type="date"
-                            value={returnDate}
-                            onChange={(e) => setReturnDate(e.target.value)}
-                        />
+                        <input type="date" value={returnDate} onChange={(e) => setReturnDate(e.target.value)} />
                     </label>
                 )}
             </div>
-            <button onClick={handleSubmit} className="search-button">TÌM</button>
-        </div>
+            <button type="submit" className="search-button">TÌM</button>
+        </form>
     );
 };
 
@@ -138,5 +102,4 @@ SearchForm.propTypes = {
         tripType: PropTypes.string,
     }),
 };
-
 export default SearchForm;

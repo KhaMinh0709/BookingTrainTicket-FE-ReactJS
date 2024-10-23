@@ -1,6 +1,6 @@
 .search-form {
     background-color: bg-gray-300; /* Màu nền */
-    padding: 40px; /* Tăng khoảng cách bên trong */
+    padding: 30px; /* Tăng khoảng cách bên trong */
     border-radius: 20px; /* Bo góc */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Đổ bóng */
     max-width: 600px; /* Tăng chiều rộng */
