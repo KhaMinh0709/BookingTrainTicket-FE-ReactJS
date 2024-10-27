@@ -4,7 +4,7 @@ export const Footer = () => {
             <div className="Container_xl__gOWjE undefined bg-gray-100 pt-10">
                 <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr_1fr_1fr_1fr] gap-5 pb-10">
                     <div>
-                        <div className="w-[185px]">
+                        <div className="w-[185px] border-collapse border-spacing-9">
                             <img src="src\assets\img\booking.jpg" alt="" width="185" height="61" />
                         </div>
                         <div className="text-sm my-[10px] max-w-[368px]">

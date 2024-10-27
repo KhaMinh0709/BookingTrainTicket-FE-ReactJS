@@ -16,10 +16,23 @@ export const Booking = () => {
   } = useTrainSearch();
 
   const [showSearchForm, setShowSearchForm] = useState(false);
+  const [tripDetails, setTripDetails] = useState(null);
+
+  const handleSearchClick = (searchParams) => {
+    handleSearch(searchParams);
+    setShowSearchForm(false); // Ẩn form tìm kiếm
+    setTripDetails({
+      departure: searchParams.departure,
+      arrival: searchParams.arrival,
+      departureDate: searchParams.departureDate,
+      returnDate: searchParams.returnDate,
+      tripType: searchParams.tripType,
+    });
+  };
 
   return (
     <div className="flex h-screen">
-      <div className="w-1/4 bg-gray-100 rounded-lg mr-9 h-full">
+      <div className="w-1/4 bg-gray-300 rounded-lg mr-9 h-full">
         {!showSearchForm && (
           <div className="text-center mb-4">
             <button
@@ -34,7 +47,7 @@ export const Booking = () => {
         {showSearchForm && (
           <div>
             <SearchForm
-              onSearch={handleSearch}
+              onSearch={handleSearchClick} // Gọi hàm handleSearchClick khi tìm kiếm
               initialValues={{
                 departure,
                 arrival,
@@ -48,9 +61,22 @@ export const Booking = () => {
                 className="bg-gray-500 text-white px-4 py-2 rounded"
                 onClick={() => setShowSearchForm(false)}
               >
-                Ẩn Form
+                Ẩn
               </button>
             </div>
+          </div>
+        )}
+
+        {tripDetails && (
+          <div className="p-4 bg-white rounded shadow mt-4">
+            <h2 className="text-lg font-semibold mb-2">Chi tiết chuyến đi</h2>
+            <p><strong>Ga đi:</strong> {tripDetails.departure}</p>
+            <p><strong>Ga đến:</strong> {tripDetails.arrival}</p>
+            <p><strong>Ngày đi:</strong> {tripDetails.departureDate}</p>
+            {tripDetails.tripType === "roundTrip" && (
+              <p><strong>Ngày về:</strong> {tripDetails.returnDate}</p>
+            )}
+            <p><strong>Loại chuyến:</strong> {tripDetails.tripType === "roundTrip" ? "Khứ hồi" : "Một chiều"}</p>
           </div>
         )}
       </div>

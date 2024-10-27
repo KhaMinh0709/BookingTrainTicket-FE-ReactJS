@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
 import TrainCard from "./TrainCard";
+import { Loading } from "../../../components/loading/Loading";
 
 export const ListTrainCard = ({ trains, isLoading }) => {
     return (
         <div className="flex flex-wrap justify-center gap-4">
             {isLoading ? (
-                <h2>Đang tải dữ liệu...</h2>
+                <Loading/>
             ) : trains.length > 0 ? (
                 trains.map((train, index) => (
                     <TrainCard
