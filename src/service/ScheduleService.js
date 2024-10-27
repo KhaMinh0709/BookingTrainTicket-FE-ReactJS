@@ -17,3 +17,4 @@ export const ListTrainInSchedule = async ({ departureStation, arrivalStation, de
         throw error; 
     }
 };
+

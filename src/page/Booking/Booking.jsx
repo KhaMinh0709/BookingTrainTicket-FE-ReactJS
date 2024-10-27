@@ -17,7 +17,6 @@ export const Booking = () => {
 
   const [showSearchForm, setShowSearchForm] = useState(false);
   const [tripDetails, setTripDetails] = useState(null);
-
   const handleSearchClick = (searchParams) => {
     handleSearch(searchParams);
     setShowSearchForm(false); // Ẩn form tìm kiếm

@@ -4,7 +4,7 @@ const TrainCard = (props) => {
   return (
     <button 
       className="bg-gradient-to-r from-blue-400 to-blue-600 w-40 h-64 rounded-2xl text-center relative p-4 text-white shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out"
-      onClick={props.onSelect}
+      onClick={()=>props.onSelect(props.id)}
     >
       <div className="bg-yellow-400 rounded-lg py-2 mb-4 text-black">
         <span className="font-bold text-lg">{props.TrainName}</span>
@@ -33,6 +33,7 @@ const TrainCard = (props) => {
 
 // Định nghĩa PropTypes
 TrainCard.propTypes = {
+  id : PropTypes.string.isRequired,
   TrainName: PropTypes.string.isRequired,
   TGDi: PropTypes.string.isRequired,
   TGDen: PropTypes.string.isRequired,

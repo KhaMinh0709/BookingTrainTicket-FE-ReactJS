@@ -1,7 +1,7 @@
 // hooks/useTrainSearch.js
 import { useReducer, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { ListTrainInSchedule } from "../service/TrainService";
+import { ListTrainInSchedule } from "../service/ScheduleService";
 
 const initialState = {
   departure: '',
