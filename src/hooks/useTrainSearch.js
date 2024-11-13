@@ -18,6 +18,7 @@ function reducer(state, action) {
     case 'SET_DEPARTURE':
       return { ...state, departure: action.payload };
     case 'SET_ARRIVAL':
+      console.log(action.payload);
       return { ...state, arrival: action.payload };
     case 'SET_DEPARTURE_DATE':
       return { ...state, departureDate: action.payload };

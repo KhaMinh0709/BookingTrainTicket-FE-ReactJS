@@ -30,7 +30,7 @@ export const Booking = () => {
   };
 
   return (
-    <div className="flex h-screen">
+    <div className="flex">
       <div className="w-1/4 bg-gray-300 rounded-lg mr-9 h-full">
         {!showSearchForm && (
           <div className="text-center mb-4">

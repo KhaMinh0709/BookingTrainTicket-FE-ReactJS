@@ -4,23 +4,23 @@ import { ListSeatInCoach } from "../../../service/SeatService";
 import ListSeat from "./ListSeat";
 
 export default function ListCoach({ data }) {
-  const [selectedCoach, setSelectedCoach] = useState();
+  const [selectedCoach, setSelectedCoach] = useState(null);
   const [seat, setSeat] = useState([]);
+  const [clearSeats, setClearSeats] = useState(false); 
 
   const handleCoachClick = (coachID) => {
     setSelectedCoach(coachID);
-    console.log(coachID);
+    setClearSeats(true); 
   };
 
-  const getSeat = async (coachID) => {
+  const getCoach = async (coachID) => {
     const res = await ListSeatInCoach(coachID);
-    console.log(res);
     setSeat(res);
   };
 
   useEffect(() => {
     if (selectedCoach) {
-        getSeat(selectedCoach);
+      getCoach(selectedCoach);
     }
   }, [selectedCoach]);
 
@@ -36,16 +36,8 @@ export default function ListCoach({ data }) {
           <button
             key={index}
             onClick={() => handleCoachClick(item.coachID)}
-            className={` 
-              ${getCoachColor(item.coachID)} 
-              text-white font-bold py-2 px-4 rounded-lg 
-              transform transition-all duration-200 ease-in-out 
-              hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
-            `}
-            style={{
-              minWidth: "60px",
-              height: "40px",
-            }}
+            className={`${getCoachColor(item.coachID)} text-white font-bold py-2 px-4 rounded-lg transform transition-all duration-200 ease-in-out hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500`}
+            style={{ minWidth: "60px", height: "40px" }}
           >
             {item.coachNumber}
           </button>
@@ -53,11 +45,11 @@ export default function ListCoach({ data }) {
       </div>
       {selectedCoach && (
         <p className="mt-4 text-lg">
-          Hãy chọn ghế
+          Selected Coach: <span className="font-bold">{selectedCoach}</span>
         </p>
       )}
-      {seat.length > 0 && (
-        <ListSeat data={seat} />
+      {seat && (
+        <ListSeat data={seat} clearSeats={clearSeats} onClearComplete={() => setClearSeats(false)} />
       )}
     </div>
   );

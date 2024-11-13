@@ -1,11 +1,11 @@
-import  { useState } from 'react';
-
+import { useState } from 'react';
 export const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
+
 
     return (
         <div className="z-[190] fixed top-0 left-0 right-0 transition-all bg-white shadow-md" id="app-header">
@@ -31,8 +31,9 @@ export const Header = () => {
                     </div>
                     <div className="flex h-full items-center gap-3">
                         <button className="md:block hidden bg-[#4d96ff] hover:bg-[#2c31cf] transition-all text-white font-bold py-2 px-4 rounded shadow hover:shadow-lg">
-                            Đăng Nhập / Đăng Ký
+                            Đăng Nhập
                         </button>
+
                     </div>
                 </div>
             </div>

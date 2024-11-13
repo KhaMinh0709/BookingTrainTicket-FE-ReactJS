@@ -22,6 +22,10 @@ const TrainCard = (props) => {
           <span className="font-bold">Sức chứa:</span>
           <span>{props.SucChua}</span>
         </div>
+        <div className="flex justify-between">
+          <span className="font-bold">giá vé:</span>
+          <span>{props.GiaVe}</span>
+        </div>
       </div>
       <div className="absolute bottom-0 left-0 right-0 h-10 bg-black rounded-b-xl flex justify-center items-center">
         <div className="bg-yellow-400 rounded-full w-5 h-5 mx-1"></div>
@@ -37,6 +41,7 @@ TrainCard.propTypes = {
   TrainName: PropTypes.string.isRequired,
   TGDi: PropTypes.string.isRequired,
   TGDen: PropTypes.string.isRequired,
+  GiaVe: PropTypes.string.isRequired,
   SucChua: PropTypes.number.isRequired,
   onSelect: PropTypes.func,  // Thêm sự kiện chọn tàu
 };

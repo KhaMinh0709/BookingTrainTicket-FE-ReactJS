@@ -18,13 +18,12 @@ export const ListTrainCard = ({ trains, isLoading }) => {
         setCoach(res);
     }
     useEffect(() => {
-        // 
         if(train){
             getCoach(train);
         }
     },[train])
     const onSelect = (id) =>{
-       setTrain(id);
+       setTrain(id); 
 
     }
 
@@ -41,12 +40,13 @@ export const ListTrainCard = ({ trains, isLoading }) => {
                         TrainName={train.trainName}
                         TGDi={train.departureTime || "??"}
                         TGDen={train.arrivalTime || "??"}
+                        GiaVe={train.price}
                         SucChua={train.capacityTrain}
                         onSelect={onSelect}
                     />
                 ))
             ) : (
-                <h2>HÃY CHỌN LỊCH TRÌNH PHÙ HỢP</h2>
+                <h2 className="text-red-500">Không có chuyến bạn cần tìm. Quý khách vui lòng chọn ngày khác hoặc liên hệ hotline: 0373 254 600 để được hỗ trợ</h2>
             )}
         </div>
             {
