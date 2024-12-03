@@ -6,6 +6,7 @@ import { Home } from './page/home/Home';
 import { TraCuu } from './page/TraCuu/TraCuu'
 import { Booking } from './page/Booking/Booking';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { NhaGa } from './page/nhaGa/NhaGa';
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
             <Route path='/' element={<Home />} />
             <Route path='/DatVe' element={<Booking />} />
             <Route path='/TraCuu' element={<TraCuu />} />
+            <Route path='/NhaGa' element={<NhaGa />} />
           </Routes>
         </BrowserRouter>
       </div>
