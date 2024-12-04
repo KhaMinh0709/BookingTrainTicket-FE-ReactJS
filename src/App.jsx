@@ -7,6 +7,7 @@ import { TraCuu } from './page/TraCuu/TraCuu'
 import { Booking } from './page/Booking/Booking';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { NhaGa } from './page/nhaGa/NhaGa';
+import LognIn from './page/LognIn/LognIn';
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
             <Route path='/DatVe' element={<Booking />} />
             <Route path='/TraCuu' element={<TraCuu />} />
             <Route path='/NhaGa' element={<NhaGa />} />
+            <Route path='/DangNhap' element={<LognIn />} />
           </Routes>
         </BrowserRouter>
       </div>
