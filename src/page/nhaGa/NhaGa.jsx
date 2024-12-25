@@ -1,26 +1,45 @@
 import NhaGaCard from "./components/NhaGaCard"
 
 export const NhaGa = () =>{
-    const trainStations = [
-        {
-          id: 1,
-          name: "Ga Sài Gòn",
-          image: "https://imacorp.com/wp-content/uploads/2024/09/IMA_Logo_Blue.jpg",
-          description: "Nhà ga trung tâm tại Thành phố Hồ Chí Minh"
-        },
-        {
-          id: 2,
-          name: "Ga Hà Nội",
-          image: "/placeholder.svg?height=200&width=400",
-          description: "Nhà ga chính tại Thủ đô Hà Nội"
-        },
-        {
-          id: 3,
-          name: "Ga Đà Nẵng",
-          image: "/placeholder.svg?height=200&width=400",
-          description: "Nhà ga trung tâm tại Đà Nẵng"
-        }
-      ]
+ const trainStations = [
+    {
+        id: 1,
+        name: "Ga Sài Gòn",
+        image: "https://th.bing.com/th/id/OIP.FJCjBwwHWFQTf0O_B0pjBgHaEK?rs=1&pid=ImgDetMain",
+        description: "Nhà ga trung tâm tại Thành phố Hồ Chí Minh"
+    },
+    {
+        id: 2,
+        name: "Ga Hà Nội",
+        image: "https://th.bing.com/th/id/R.2d0e03ed7205730b006ad5ce374611d1?rik=69pAW4p3mU7NMg&pid=ImgRaw&r=0",
+        description: "Nhà ga chính tại Thủ đô Hà Nội"
+    },
+    {
+        id: 3,
+        name: "Ga Đà Nẵng",
+        image: "https://th.bing.com/th/id/OIP.k1DzVbP1vTC4PrICi1RJbgHaEQ?rs=1&pid=ImgDetMain",
+        description: "Nhà ga trung tâm tại Đà Nẵng"
+    },
+    {
+        id: 4,
+        name: "Ga Hội An",
+        image: "https://th.bing.com/th/id/OIP.2a3cPChgMecevWVpj-z7xgHaEd?rs=1&pid=ImgDetMain",
+        description: "Nhà ga trung tâm tại Hội An"
+    },
+    {
+        id: 5,
+        name: "Ga Phú Yên",
+        image: "https://th.bing.com/th/id/OIP.U3RfqsmMdWfaR8c26QjToQHaDg?rs=1&pid=ImgDetMain",
+        description: "Nhà ga trung tâm tại Phú Yên"
+    },
+    {
+        id: 6,
+        name: "Ga Nha Trang",
+        image: "https://th.bing.com/th/id/OIP.k1DzVbP1vTC4PrICi1RJbgHaEQ?rs=1&pid=ImgDetMain",
+        description: "Nhà ga tại Nha Trang"
+    }
+];
+
       
       return (
         <div className="container mx-auto py-8 px-4">

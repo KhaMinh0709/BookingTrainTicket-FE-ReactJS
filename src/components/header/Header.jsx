@@ -30,10 +30,12 @@ export const Header = () => {
                         </button>
                     </div>
                     <div className="flex h-full items-center gap-3">
-                        <button className="md:block hidden bg-[#4d96ff] hover:bg-[#2c31cf] transition-all text-white font-bold py-2 px-4 rounded shadow hover:shadow-lg">
-                            Đăng Nhập
-                        </button>
-
+                        <a
+                            href="/DangNhap"
+                            className="md:block hidden bg-[#4d96ff] hover:bg-[#2c31cf] transition-all text-white font-bold py-2 px-4 rounded shadow hover:shadow-lg"
+                        >
+                                Đăng Nhập
+                        </a>
                     </div>
                 </div>
             </div>

@@ -2,12 +2,10 @@ export default function NhaGaCard({ name, image, description, onSeeMore }) {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden">
       <div className="relative h-48 w-full">
-        <Image
+        <img
           src={image}
           alt={name}
-          fill
-          className="object-cover"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover w-full h-full"
         />
       </div>
       <div className="p-4">
@@ -25,6 +23,5 @@ export default function NhaGaCard({ name, image, description, onSeeMore }) {
         </button>
       </div>
     </div>
-  )
+  );
 }
-

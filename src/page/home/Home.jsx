@@ -17,9 +17,9 @@ export const Home = () => {
                 <div className="form-container-search">
                     <SearchForm onSearch={handleSearch} />
                 </div>
-                <div className="form-container-signUp">
+                {/* <div className="form-container-signUp">
                     <FormSignIn />
-                </div>
+                </div> */}
             </div>
             <div>
                 <DetailAboutUs />
