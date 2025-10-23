@@ -1,7 +1,7 @@
-import SearchForm from "../../components/searchForm/SearchForm";
 import { ListTrainCard } from "./components/ListTrainCard";
 import { useTrainSearch } from "../../hooks/useTrainSearch";
 import { useState } from "react";
+import { SearchForm } from "../../components/searchForm/SearchForm";
 
 export const Booking = () => {
   const {

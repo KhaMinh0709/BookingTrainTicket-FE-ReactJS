@@ -19,9 +19,9 @@ export const Header = () => {
                             <a className="h-full flex items-center transition hover:text-[#2c31cf] hover:font-semibold" href="/DatVe" aria-label="Đặt Vé">Đặt Vé</a>
                             <a className="h-full flex items-center transition hover:text-[#2c31cf] hover:font-semibold" href="/TraCuu" aria-label="Tra Cứu Thông Tin vé">Tra Cứu Thông Tin vé</a>
                             <a className="h-full flex items-center transition hover:text-[#2c31cf] hover:font-semibold" href="/NhaGa" aria-label="Nhà Ga">Nhà Ga</a>
-                            <a className="h-full flex items-center transition hover:text-[#2c31cf] hover:font-semibold" href="/TinDuLich" aria-label="Tin Du Lịch">Tin Du Lịch</a>
+                            <a className="h-full flex items-center transition hover:text-[#2c31cf] hover:font-semibold" href="/tour" aria-label="Tin Du Lịch">Tin Du Lịch</a>
                             <a className="h-full flex items-center transition hover:text-[#2c31cf] hover:font-semibold" href="/KhuyenMai" aria-label="Khuyến Mãi">Khuyến Mãi</a>
-                            <a className="h-full flex items-center transition hover:text-[#2c31cf] hover:font-semibold" href="/LienHe" aria-label="Liên Hệ Với Chúng Tôi">Liên Hệ Với Chúng Tôi</a>
+                            <a className="h-full flex items-center transition hover:text-[#2c31cf] hover:font-semibold" href="/contact" aria-label="Liên Hệ Với Chúng Tôi">Liên Hệ Với Chúng Tôi</a>
                         </div>
                         <button onClick={toggleMenu} className="lg:hidden">
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

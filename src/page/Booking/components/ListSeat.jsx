@@ -2,50 +2,60 @@
 import { useEffect, useState } from "react";
 import Cart from "./Cart";
 
-export default function ListSeat({ data, clearSeats, onClearComplete }) {
+export default function ListSeat({ data = [], clearSeats, onClearComplete, onSelectionChange, coachId }) {
   const [selectedSeats, setSelectedSeats] = useState([]);
 
   useEffect(() => {
     if (clearSeats) {
       setSelectedSeats([]);
-      onClearComplete(); // Gọi hàm để báo là việc xóa ghế đã hoàn tất
+      if (typeof onClearComplete === 'function') onClearComplete(); // thông báo xong
     }
   }, [clearSeats, onClearComplete]);
 
-  const handleSeatClick = (seatNumber) => {
-    setSelectedSeats((prevSelectedSeats) => {
-      if (prevSelectedSeats.includes(seatNumber)) {
-        return prevSelectedSeats.filter((seat) => seat !== seatNumber);
-      } else {
-        return [...prevSelectedSeats, seatNumber];
+  const handleSeatClick = (seat) => {
+    const seatNumber = seat.seatNumber ?? seat;
+    const coachNumber = seat.coachNumber ?? coachId;
+    setSelectedSeats((prev) => {
+      if (prev.find(s => s.seatNumber === seatNumber && s.coachNumber === coachNumber)) {
+        return prev.filter(s => !(s.seatNumber === seatNumber && s.coachNumber === coachNumber));
       }
+      // include coachNumber and price
+      return [...prev, { seatNumber, price: seat.price ?? 0, coachNumber }];
     });
   };
 
-  const getSeatColor = (seatNumber) => {
-    return selectedSeats.includes(seatNumber) ? "bg-green-500" : "bg-gray-300";
-  };
+  // notify parent about selection changes; send coachId so parent can merge across coaches
+  useEffect(() => {
+    if (typeof onSelectionChange === 'function') {
+      onSelectionChange({ coachId, seats: selectedSeats });
+    }
+  }, [selectedSeats, coachId]);
+
+  const isSold = (item) => item.status === 'SOLD' || item.sold || item.isBooked;
 
   return (
     <div>
-      <div className="flex flex-wrap gap-3">
-        {data.map((item, index) => (
-          <button
-            key={index}
-            onClick={() => handleSeatClick(item.seatNumber)}
-            className={`text-white font-bold py-2 px-4 rounded-lg ${getSeatColor(
-              item.seatNumber
-            )}`}
-            style={{
-              minWidth: "60px",
-              height: "40px",
-            }}
-          >
-            {item.seatNumber}
-          </button>
-        ))}
+      <div className="grid grid-cols-8 gap-3">
+        {data.map((item, idx) => {
+          const num = item.seatNumber ?? item;
+          const sold = isSold(item);
+          const selected = selectedSeats.some(s => s.seatNumber === num && s.coachNumber === (item.coachNumber ?? coachId));
+          const base = 'w-12 h-12 flex items-center justify-center rounded text-sm font-medium select-none';
+          const cls = sold ? `${base} bg-red-500 text-white` : selected ? `${base} bg-yellow-300 border-2 border-yellow-500` : `${base} bg-white border`;
+
+          return (
+            <button
+              key={idx}
+              disabled={sold}
+              onClick={() => !sold && handleSeatClick(item)}
+              className={cls}
+              title={`Ghế ${num}`}
+            >
+              {num}
+            </button>
+          );
+        })}
       </div>
-      <Cart selectedSeats={selectedSeats} />
     </div>
   );
 }

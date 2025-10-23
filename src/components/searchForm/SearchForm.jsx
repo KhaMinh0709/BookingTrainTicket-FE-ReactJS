@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
-import './SearchForm.css';
+import { MapPin, Calendar, ArrowRight, Search } from 'lucide-react';
 
 export const SearchForm = ({ onSearch, initialValues }) => {
     const [departure, setDeparture] = useState(initialValues?.departure || '');
@@ -33,73 +32,154 @@ export const SearchForm = ({ onSearch, initialValues }) => {
     };
 
     return (
-        <form className="search-form" onSubmit={handleSubmit}>
-            <h2 className="form-title">Tìm chuyến</h2>
-            <div className="trip-type">
-                <button
-                    type="button"
-                    className={`trip-button ${tripType === 'oneWay' ? 'active' : ''}`}
-                    onClick={() => setTripType('oneWay')}
-                >
-                    Một chiều
-                </button>
-                <button
-                    type="button"
-                    className={`trip-button ${tripType === 'roundTrip' ? 'active' : ''}`}
-                    onClick={() => setTripType('roundTrip')}
-                >
-                    Khứ hồi
-                </button>
+        <div className="w-full max-w-4xl mx-auto p-6">
+            <div className="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-8 transform transition-all duration-300 hover:shadow-3xl">
+                {/* Title */}
+                <div className="flex items-center justify-center mb-8">
+                    <Search className="w-6 h-6 text-indigo-600 mr-2" />
+                    <h2 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                        Tìm chuyến
+                    </h2>
+                </div>
+
+                <div onSubmit={handleSubmit}>
+                    {/* Trip Type Toggle */}
+                    <div className="flex gap-3 mb-8">
+                        <button
+                            type="button"
+                            className={`flex-1 py-3.5 px-6 rounded-xl font-semibold transition-all duration-300 transform ${
+                                tripType === 'oneWay'
+                                    ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg scale-105'
+                                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200 hover:scale-102'
+                            }`}
+                            onClick={() => setTripType('oneWay')}
+                        >
+                            Một chiều
+                        </button>
+                        <button
+                            type="button"
+                            className={`flex-1 py-3.5 px-6 rounded-xl font-semibold transition-all duration-300 transform ${
+                                tripType === 'roundTrip'
+                                    ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg scale-105'
+                                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200 hover:scale-102'
+                            }`}
+                            onClick={() => setTripType('roundTrip')}
+                        >
+                            Khứ hồi
+                        </button>
+                    </div>
+
+                    {/* Location Selection */}
+                    <div className="grid md:grid-cols-2 gap-6 mb-6">
+                        <div className="group relative">
+                            <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center">
+                                <div className="w-8 h-8 rounded-lg bg-indigo-100 flex items-center justify-center mr-2 group-hover:bg-indigo-200 transition-colors duration-300">
+                                    <MapPin className="w-4 h-4 text-indigo-600" />
+                                </div>
+                                Nơi đi
+                            </label>
+                            <select
+                                value={departure}
+                                onChange={(e) => setDeparture(e.target.value)}
+                                className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-indigo-200 focus:border-indigo-500 transition-all duration-300 bg-white hover:border-indigo-300 appearance-none cursor-pointer text-gray-700 font-medium"
+                            >
+                                <option value="">Chọn nơi đi</option>
+                                {provinces.map((province) => (
+                                    <option key={province} value={province}>
+                                        {province}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+
+                        <div className="group relative">
+                            <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center">
+                                <div className="w-8 h-8 rounded-lg bg-purple-100 flex items-center justify-center mr-2 group-hover:bg-purple-200 transition-colors duration-300">
+                                    <MapPin className="w-4 h-4 text-purple-600" />
+                                </div>
+                                Nơi đến
+                            </label>
+                            <select
+                                value={arrival}
+                                onChange={(e) => setArrival(e.target.value)}
+                                className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-purple-200 focus:border-purple-500 transition-all duration-300 bg-white hover:border-purple-300 appearance-none cursor-pointer text-gray-700 font-medium"
+                            >
+                                <option value="">Chọn nơi đến</option>
+                                {provinces.map((province) => (
+                                    <option key={province} value={province}>
+                                        {province}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                    </div>
+
+                    {/* Date Selection */}
+                    <div className={`grid ${tripType === 'roundTrip' ? 'md:grid-cols-2' : 'md:grid-cols-1'} gap-6 mb-8`}>
+                        <div className="group">
+                            <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center">
+                                <div className="w-8 h-8 rounded-lg bg-indigo-100 flex items-center justify-center mr-2 group-hover:bg-indigo-200 transition-colors duration-300">
+                                    <Calendar className="w-4 h-4 text-indigo-600" />
+                                </div>
+                                Ngày đi
+                            </label>
+                            <input
+                                type="date"
+                                value={departureDate}
+                                onChange={(e) => setDepartureDate(e.target.value)}
+                                className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-indigo-200 focus:border-indigo-500 transition-all duration-300 bg-white hover:border-indigo-300 cursor-pointer text-gray-700 font-medium"
+                            />
+                        </div>
+
+                        {tripType === 'roundTrip' && (
+                            <div className="group animate-fade-in">
+                                <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center">
+                                    <div className="w-8 h-8 rounded-lg bg-purple-100 flex items-center justify-center mr-2 group-hover:bg-purple-200 transition-colors duration-300">
+                                        <Calendar className="w-4 h-4 text-purple-600" />
+                                    </div>
+                                    Ngày về (Khứ hồi)
+                                </label>
+                                <input
+                                    type="date"
+                                    value={returnDate}
+                                    onChange={(e) => setReturnDate(e.target.value)}
+                                    className="w-full px-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-purple-200 focus:border-purple-500 transition-all duration-300 bg-white hover:border-purple-300 cursor-pointer text-gray-700 font-medium"
+                                />
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Submit Button */}
+                    <button
+                        type="submit"
+                        onClick={handleSubmit}
+                        className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center group"
+                    >
+                        <Search className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300" />
+                        TÌM CHUYẾN
+                        <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+                    </button>
+                </div>
             </div>
-            <div className="location-selection">
-                <label>
-                    Nơi đi
-                    <select value={departure} onChange={(e) => setDeparture(e.target.value)}>
-                        <option value="">Chọn nơi đi</option>
-                        {provinces.map((province) => (
-                            <option key={province} value={province}>
-                                {province}
-                            </option>
-                        ))}
-                    </select>
-                </label>
-                <label>
-                    Nơi đến
-                    <select value={arrival} onChange={(e) => setArrival(e.target.value)}>
-                        <option value="">Chọn nơi đến</option>
-                        {provinces.map((province) => (
-                            <option key={province} value={province}>
-                                {province}
-                            </option>
-                        ))}
-                    </select>
-                </label>
-            </div>
-            <div className="date-selection">
-                <label>
-                    Ngày đi
-                    <input type="date" value={departureDate} onChange={(e) => setDepartureDate(e.target.value)} />
-                </label>
-                {tripType === 'roundTrip' && (
-                    <label>
-                        Ngày về (Khứ hồi)
-                        <input type="date" value={returnDate} onChange={(e) => setReturnDate(e.target.value)} />
-                    </label>
-                )}
-            </div>
-            <button type="submit" className="search-button">TÌM</button>
-        </form>
+
+            <style jsx>{`
+                @keyframes fade-in {
+                    from {
+                        opacity: 0;
+                        transform: translateY(10px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+                .animate-fade-in {
+                    animation: fade-in 0.4s ease-out;
+                }
+                select::-ms-expand {
+                    display: none;
+                }
+            `}</style>
+        </div>
     );
 };
-
-SearchForm.propTypes = {
-    onSearch: PropTypes.func.isRequired,
-    initialValues: PropTypes.shape({
-        departure: PropTypes.string,
-        arrival: PropTypes.string,
-        departureDate: PropTypes.string,
-        returnDate: PropTypes.string,
-        tripType: PropTypes.string,
-    }),
-};
-export default SearchForm;

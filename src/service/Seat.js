@@ -1,0 +1,1 @@
+export const Seat = async (seatId) => {}

@@ -1,6 +1,8 @@
 import NhaGaCard from "./components/NhaGaCard"
+import { useNavigate } from 'react-router-dom';
 
 export const NhaGa = () =>{
+ const navigate = useNavigate();
  const trainStations = [
     {
         id: 1,
@@ -51,7 +53,7 @@ export const NhaGa = () =>{
                 name={station.name}
                 image={station.image}
                 description={station.description}
-                onSeeMore={() => console.log(`Xem thêm về ${station.name}`)}
+                onSeeMore={() => navigate(`/NhaGa/${station.id}`)}
               />
 
             ))}
